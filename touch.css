@@ -1,0 +1,94 @@
+.touch-hints {
+  display: none;
+}
+
+.touch-mode .touch-hints {
+  display: block;
+}
+
+.touch-mode .keyboard-hints,
+.touch-mode #hud small {
+  display: none;
+}
+
+.touch-mode #menu {
+  padding-top: max(18px, env(safe-area-inset-top));
+  padding-right: max(clamp(24px, 5vw, 85px), env(safe-area-inset-right));
+  padding-bottom: max(15px, env(safe-area-inset-bottom));
+  padding-left: max(clamp(24px, 5vw, 85px), env(safe-area-inset-left));
+}
+
+.touch-mode #hud aside {
+  top: max(14px, env(safe-area-inset-top));
+  bottom: auto;
+  left: max(14px, env(safe-area-inset-left));
+}
+
+#touch-controls {
+  --inset: clamp(16px, 4vw, 30px);
+  position: fixed;
+  inset: 0;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+
+#touch-controls button {
+  display: grid;
+  place-items: center;
+  width: auto;
+  min-width: 64px;
+  height: 48px;
+  padding: 0 12px;
+  color: #fff5d7;
+  background: #171a14bb;
+  border: 1px solid #eee0bb82;
+  border-radius: 3px;
+  font: 700 11px/1 var(--mono);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+#touch-controls button:active,
+#touch-controls button.held {
+  color: #211e15;
+  background: var(--gold);
+}
+
+#touch-pause {
+  position: absolute;
+  top: max(12px, env(safe-area-inset-top));
+  right: max(var(--inset), env(safe-area-inset-right));
+}
+
+.touch-actions {
+  position: absolute;
+  right: max(var(--inset), env(safe-area-inset-right));
+  bottom: max(var(--inset), env(safe-area-inset-bottom));
+  display: flex;
+  gap: 8px;
+}
+
+#touch-stick {
+  position: absolute;
+  left: var(--stick-x, max(calc(var(--inset) + 46px), calc(env(safe-area-inset-left) + 46px)));
+  top: var(--stick-y, calc(100% - max(var(--inset), env(safe-area-inset-bottom)) - 46px));
+  width: 92px;
+  height: 92px;
+  transform: translate(-50%, -50%);
+  border: 1px solid #eee0bb82;
+  border-radius: 50%;
+  background: #171a145e;
+  pointer-events: none;
+}
+
+#touch-stick::after {
+  content: '';
+  position: absolute;
+  inset: 28px;
+  transform: translate(var(--stick-dx, 0px), var(--stick-dy, 0px));
+  border: 1px solid #eee0bbac;
+  border-radius: 50%;
+  background: #e6bc7044;
+}

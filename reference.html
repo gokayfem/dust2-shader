@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#171a15" />
+    <link rel="icon" href="data:," />
+    <title>Dust II · Counter-Strike 1.5</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="touch.css" />
+  </head>
+  <body>
+    <canvas
+      id="world"
+      aria-label="First-person view of Dust II"
+      tabindex="-1"
+    ></canvas>
+    <div id="menu">
+      <header>
+        <div class="brand"><i></i> Counter-Strike <b>1.5</b></div>
+        <span id="pipeline-name">FULLSCREEN RAY SHADER <em>/</em> WEBGL 2</span>
+      </header>
+      <main>
+        <div class="intro">
+          <div class="mono kicker"><i></i> GOLDsrc <em>/</em> de_dust2</div>
+          <h1>Dust II</h1>
+          <p class="credit">
+            Level design by Dave Johnston<br />Textures by MacMan
+          </p>
+        </div>
+        <form id="entry">
+          <fieldset>
+            <legend>Spawn point</legend>
+            <div class="switch">
+              <label
+                ><input type="radio" name="team" value="T" checked /><span
+                  >T spawn</span
+                ></label
+              ><label
+                ><input type="radio" name="team" value="CT" /><span
+                  >CT spawn</span
+                ></label
+              >
+            </div>
+          </fieldset>
+          <label class="mode"
+            ><span>Session</span
+            ><select id="mode">
+              <option value="free">Free exploration</option>
+              <option value="run">Timed site run</option>
+            </select></label
+          ><button id="play" disabled>Loading map… <span>→</span></button>
+        </form>
+      </main>
+      <footer>
+        <div class="keyboard-hints">
+          <kbd>W A S D</kbd> Move <kbd>Mouse</kbd> Look <kbd>Space</kbd> Jump
+          <kbd>C</kbd> Crouch
+        </div>
+        <div class="touch-hints">
+          Drag on the left to move · Drag on the right to look
+        </div>
+        <nav class="source-links"><a id="shader-link" href="shaders/scene-ray.frag.glsl" target="_blank">Shader source ↗</a><a href="qa/" target="_blank">Map comparisons ↗</a></nav>
+      </footer>
+    </div>
+    <div id="hud" hidden>
+      <div id="cross"></div>
+      <aside><b>de_dust2</b><span id="objective">Free exploration</span></aside>
+      <small>Click / F &nbsp; Fire <i>·</i> R &nbsp; Reset <i>·</i> Esc &nbsp; Menu</small>
+    </div>
+    <div id="touch-controls" hidden>
+      <div id="touch-stick" aria-hidden="true"></div>
+      <button id="touch-pause" type="button" aria-label="Pause and open menu">
+        Menu
+      </button>
+      <div class="touch-actions">
+        <button id="touch-crouch" type="button" aria-label="Hold to crouch">
+          Crouch
+        </button>
+        <button id="touch-fire" type="button">Fire</button>
+        <button id="touch-jump" type="button">Jump</button>
+      </div>
+    </div>
+    <p id="status" role="status"></p>
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
