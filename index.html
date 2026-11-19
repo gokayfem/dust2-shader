@@ -385,7 +385,8 @@ U›Ñ”¡ïHÐ¶ýúV>ì‹ÞÊ§>l»H®˜sü^XÚ™(ü‹5ºT]\ëV‘0d,‚ºA÷µËè7e¼è÷ð×gë‡Ç¬Þ´l
 ÿu)H%7 AA</script><script type="module">
 try{
 const utf=new TextDecoder(),dec=new TextDecoder("windows-1252"),lut=new Uint8Array(65536);for(let i=0;i<256;i++)lut[dec.decode(Uint8Array.of(i)).charCodeAt(0)]=i;
-function read(id){const s=document.getElementById(id).textContent,r=new Uint8Array(s.length),e=[0,1,13,60];let n=0;for(let j=0;j<s.length;j++){let v=lut[s.charCodeAt(j)];r[n++]=v===1?e[s.charCodeAt(++j)-65]:v}return r.subarray(0,n)}
+const src=document.characterSet.toLowerCase()==="utf-8"?dec.decode(await(await fetch(location.href)).arrayBuffer()):"";
+function read(id){const s=src?src.split('id="'+id+'" type="application/octet-stream">')[1].split('</scr'+'ipt>')[0]:document.getElementById(id).textContent,r=new Uint8Array(s.length),e=[0,1,13,60];let n=0;for(let j=0;j<s.length;j++){let v=lut[s.charCodeAt(j)];r[n++]=v===1?e[s.charCodeAt(++j)-65]:v}return r.subarray(0,n)}
 async function gunzip(b){return new Uint8Array(await new Response(new Blob([b]).stream().pipeThrough(new DecompressionStream("gzip"))).arrayBuffer())}
 const lib=document.createElement('script');lib.textContent=utf.decode(await gunzip(read('d')));document.head.append(lib);const raw=window.decodeLzma(read('p'));
 const d=new DataView(raw.buffer,raw.byteOffset,raw.byteLength),parts=[];let j=28;for(let i=0;i<7;i++){let n=d.getUint32(i*4,true);parts.push(raw.subarray(j,j+n));j+=n}
